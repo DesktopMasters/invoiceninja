@@ -87,6 +87,7 @@ EXPOSE 80
 COPY docker-compose/cronscript.sh /cronscript.sh
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh /cronscript.sh
+RUN /usr/local/bin/php /var/www/app/artisan queue:listen &
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm"]
